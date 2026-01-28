@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../utils/CartContext";
+import { useAuth } from "../utils/AuthContext";
 
 export default function Navbar() {
   // Mengambil totalQty dari context UseCart
   const { totalQty } = useCart();
+  const { user } = useAuth();
   return (
     <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
       {/* Logo */}
@@ -28,6 +30,12 @@ export default function Navbar() {
         <Link to="/checkout" className="hover:text-gray-200">
           Checkout
         </Link>
+        
+       {user ? <Link to="/logout">Logout</Link>
+       : <Link to="/login">Login</Link>
+       }
+
+
       </div>
     </nav>
   );

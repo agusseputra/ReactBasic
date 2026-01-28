@@ -7,10 +7,16 @@ import Dashboard from "./pages/frontpages/Dashboard";
 import ProductDetail from "./pages/frontpages/ProductDetail";
 import Cart from "./pages/frontpages/Cart";
 import Checkout from "./pages/frontpages/Checkout";
+import ProductForm from "./pages/adminpages/ProductForm";
+import ProductEdit from "./pages/adminpages/ProductEdit";
+import LoginPage from "./pages/LoginPage";
+import LogoutPage from "./pages/LogoutPage";
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/logout" element={<LogoutPage />} />
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="product/:id" element={<ProductDetail />} />
@@ -23,6 +29,8 @@ export default function App() {
             {/* mapping path ke component page, gunakan autocompletion */}
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="about" element={<AboutPage />} />
+            <Route path="add-product" element={<ProductForm />} />
+            <Route path="edit-product/:id" element={<ProductEdit />} />
       </Route>
     </Routes>
   );

@@ -1,10 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import { useAuth } from "../utils/AuthContext";
 //Export Default menandai bahwa komponen ini nantinya dibaca sebagai AdminLayout
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const { user } = useAuth();
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
+    // if (!user || user.role !== 'admin') {
+    //     return <Navigate to="/login" />;
+    // }
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Menggunakan Componen Sidebar */}
